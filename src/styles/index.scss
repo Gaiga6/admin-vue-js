@@ -4,12 +4,12 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 14px;
-  color: var(--app-text-color);
-  background-color: var(--app-bg-color);
+  font-size: var(--el-font-size-base);
+  color: var(--el-text-color-primary);
+  background-color: var(--el-bg-color-page);
 }
 
 /* 布局相关 */
@@ -19,9 +19,14 @@ body {
 
 .app-container {
   padding: 20px;
-  background-color: var(--app-container-bg-color);
-  border-radius: 4px;
+  background-color: var(--el-bg-color);
+  border-radius: var(--el-border-radius-base);
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+}
+
+/* 紧凑模式下的容器样式 */
+.compact .app-container {
+  padding: 16px;
 }
 
 /* 移除默认边距 */
@@ -40,6 +45,30 @@ h1, h2, h3, h4, h5, h6, p {
   opacity: 0;
 }
 
+/* 页面切换动画 */
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.3s ease;
+}
+
+.slide-enter-from {
+  transform: translateX(100%);
+}
+
+.slide-leave-to {
+  transform: translateX(-100%);
+}
+
+.zoom-enter-active,
+.zoom-leave-active {
+  transition: transform 0.3s ease;
+}
+
+.zoom-enter-from,
+.zoom-leave-to {
+  transform: scale(0.95);
+}
+
 /* 滚动条样式 */
 ::-webkit-scrollbar {
   width: 6px;
@@ -47,10 +76,131 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c0c4cc;
+  background: var(--el-border-color);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f5f5f5;
+  background: var(--el-border-color-extra-light);
+}
+
+/* 紧凑模式下的滚动条 */
+.compact ::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+/* 水印样式 */
+#watermark-container {
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* 紧凑模式全局样式 */
+.compact {
+  .el-button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .el-input__wrapper {
+    padding: 0 8px;
+  }
+  
+  .el-table {
+    font-size: 12px;
+    
+    .el-table__header th {
+      padding: 8px 0;
+    }
+    
+    .el-table__body td {
+      padding: 6px 0;
+    }
+  }
+  
+  .el-card {
+    .el-card__header {
+      padding: 12px 16px;
+    }
+    
+    .el-card__body {
+      padding: 12px 16px;
+    }
+  }
+  
+  .el-form-item {
+    margin-bottom: 16px;
+  }
+  
+  .el-dialog {
+    .el-dialog__header {
+      padding: 16px 20px;
+    }
+    
+    .el-dialog__body {
+      padding: 16px 20px;
+    }
+    
+    .el-dialog__footer {
+      padding: 12px 20px;
+    }
+  }
+}
+
+/* 暗色主题下的紧凑模式 */
+.dark.compact {
+  .el-button {
+    border-color: var(--el-border-color-darker);
+  }
+  
+  .el-input__wrapper {
+    background-color: var(--el-bg-color-page);
+    border-color: var(--el-border-color-darker);
+  }
+}
+
+/* 设置抽屉样式优化 */
+.settings-container {
+  .settings-section {
+    .setting-item {
+      .el-input,
+      .el-select {
+        width: 140px;
+      }
+      
+      .el-slider {
+        width: 140px;
+      }
+      
+      .el-color-picker {
+        .el-color-picker__trigger {
+          width: 40px;
+          height: 32px;
+        }
+      }
+    }
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .settings-container {
+    .settings-section {
+      .setting-item {
+        flex-direction: column;
+        align-items: flex-start;
+        
+        .setting-label {
+          margin-bottom: 8px;
+        }
+        
+        .el-input,
+        .el-select,
+        .el-slider {
+          width: 100%;
+        }
+      }
+    }
+  }
 } 

@@ -18,6 +18,12 @@ const routes = [
     meta: { title: '首页', hidden: true }
   },
   {
+    path: '/redirect/:path(.*)',
+    name: 'Redirect',
+    component: () => import('@/views/redirect/index.vue'),
+    meta: { title: '重定向', hidden: true }
+  },
+  {
     path: '/admin',
     component: Layout,
     redirect: '/admin/dashboard',

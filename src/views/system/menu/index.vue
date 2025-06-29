@@ -135,9 +135,9 @@
           <el-col :span="24">
             <el-form-item label="菜单类型" prop="menuType">
               <el-radio-group v-model="form.menuType">
-                <el-radio label="M">目录</el-radio>
-                <el-radio label="C">菜单</el-radio>
-                <el-radio label="F">按钮</el-radio>
+                <el-radio value="M">目录</el-radio>
+                <el-radio value="C">菜单</el-radio>
+                <el-radio value="F">按钮</el-radio>
               </el-radio-group>
             </el-form-item>
           </el-col>
@@ -198,8 +198,8 @@
           <el-col :span="24">
             <el-form-item label="状态" prop="status">
               <el-radio-group v-model="form.status">
-                <el-radio label="0">正常</el-radio>
-                <el-radio label="1">停用</el-radio>
+                <el-radio value="0">正常</el-radio>
+                <el-radio value="1">停用</el-radio>
               </el-radio-group>
             </el-form-item>
           </el-col>
@@ -483,7 +483,7 @@ const getList = () => {
           {
             id: 201,
             menuName: '数据概览',
-            icon: 'DataLine',
+            icon: 'TrendCharts',
             orderNum: 1,
             perms: '',
             component: 'dashboard/index',

@@ -113,10 +113,10 @@
         <el-form-item label="角色顺序" prop="roleSort">
           <el-input-number v-model="form.roleSort" :min="1" :max="999" controls-position="right" />
         </el-form-item>
-        <el-form-item label="状态">
+        <el-form-item label="状态" prop="status">
           <el-radio-group v-model="form.status">
-            <el-radio :label="1">正常</el-radio>
-            <el-radio :label="0">停用</el-radio>
+            <el-radio :value="1">正常</el-radio>
+            <el-radio :value="0">停用</el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item label="备注">

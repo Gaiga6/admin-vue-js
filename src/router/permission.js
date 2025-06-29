@@ -25,7 +25,24 @@ function loadComponent(component) {
   if (component === 'Layout') {
     return import('@/layout/index.vue')
   }
-  // 其他组件动态导入
+  
+  // 使用组件映射表
+  const componentMap = {
+    'dashboard/index': () => import('@/views/dashboard/index.vue'),
+    'system/user/index': () => import('@/views/system/user/index.vue'),
+    'system/role/index': () => import('@/views/system/role/index.vue'),
+    'system/menu/index': () => import('@/views/system/menu/index.vue'),
+    'login/index': () => import('@/views/login/index.vue'),
+    'error-page/404': () => import('@/views/error-page/404.vue')
+  }
+  
+  // 如果组件在映射表中，使用预定义的导入
+  if (componentMap[component]) {
+    return componentMap[component]()
+  }
+  
+  // 如果不在映射表中，尝试使用动态导入（但这种方式在Vite中可能不稳定）
+  console.warn(`Component ${component} not found in component map, trying dynamic import`)
   return import(`@/views/${component}.vue`)
 }
 
@@ -75,10 +92,14 @@ router.beforeEach(async(to, from, next) => {
           // 设置按钮权限
           permissionStore.setButtonPermissions(permissions)
           
-          // 动态添加路由
+          // 动态添加路由（只添加不存在的路由）
           const realRoutes = createRoutes(accessRoutes)
           realRoutes.forEach(route => {
-            router.addRoute(route)
+            // 检查路由是否已经存在
+            const existingRoute = router.getRoutes().find(r => r.path === route.path)
+            if (!existingRoute) {
+              router.addRoute(route)
+            }
           })
           
           // 设置replace为true，不会向history添加新记录

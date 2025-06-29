@@ -29,11 +29,11 @@
         <el-card shadow="hover" class="chart-card">
           <template #header>
             <div class="card-header">
-              <span>本月销售趋势</span>
-              <el-radio-group v-model="chartTimeRange" size="small">
-                <el-radio-button label="week">本周</el-radio-button>
-                <el-radio-button label="month">本月</el-radio-button>
-                <el-radio-button label="year">本年</el-radio-button>
+              <span>{{ $t('dashboard.salesTrend') }}</span>
+              <el-radio-group v-model="timeRange" @change="handleTimeRangeChange">
+                <el-radio-button value="week">{{ $t('dashboard.thisWeek') }}</el-radio-button>
+                <el-radio-button value="month">{{ $t('dashboard.thisMonth') }}</el-radio-button>
+                <el-radio-button value="year">{{ $t('dashboard.thisYear') }}</el-radio-button>
               </el-radio-group>
             </div>
           </template>
@@ -49,7 +49,7 @@
         <el-card shadow="hover" class="chart-card">
           <template #header>
             <div class="card-header">
-              <span>销售分类占比</span>
+              <span>{{ $t('dashboard.recentOrders') }}</span>
             </div>
           </template>
           <div class="chart-placeholder">
@@ -66,7 +66,7 @@
         <el-card shadow="hover">
           <template #header>
             <div class="card-header between">
-              <span>最新订单</span>
+              <span>{{ $t('dashboard.recentOrders') }}</span>
               <el-button type="primary" link>查看更多</el-button>
             </div>
           </template>
@@ -77,7 +77,7 @@
             <el-table-column prop="amount" label="金额" />
             <el-table-column prop="status" label="状态">
               <template #default="scope">
-                <el-tag :type="getStatusType(scope.row.status)">{{ scope.row.status }}</el-tag>
+                <el-tag :type="getStatusType(scope.row.status)">{{ $t(`dashboard.${scope.row.status}`) }}</el-tag>
               </template>
             </el-table-column>
             <el-table-column label="操作" width="150">
@@ -97,7 +97,7 @@
 import { ref } from 'vue'
 
 // 图表时间范围
-const chartTimeRange = ref('month')
+const timeRange = ref('month')
 
 // 数据统计卡片
 const statCards = [
@@ -175,6 +175,11 @@ const getStatusType = (status) => {
     '待支付': 'warning'
   }
   return map[status] || 'info'
+}
+
+// 处理时间范围变化
+const handleTimeRangeChange = () => {
+  // 这里可以添加处理逻辑
 }
 </script>
 
