@@ -1,0 +1,47 @@
+/* 主题变量 */
+:root {
+  --el-color-primary: #409eff;
+  --el-color-success: #67c23a;
+  --el-color-warning: #e6a23c;
+  --el-color-danger: #f56c6c;
+  --el-color-info: #909399;
+  
+  /* 背景色 */
+  --app-bg-color: #f5f7fa;
+  --app-container-bg-color: #ffffff;
+  
+  /* 文本颜色 */
+  --app-text-color: #303133;
+  --app-text-color-secondary: #606266;
+  
+  /* 边框颜色 */
+  --app-border-color: #dcdfe6;
+  --app-border-color-light: #e4e7ed;
+  
+  /* 菜单相关 */
+  --app-menu-bg-color: #304156;
+  --app-menu-text-color: #bfcbd9;
+  --app-menu-active-text-color: #409eff;
+}
+
+/* 暗黑模式 */
+html.dark {
+  --el-color-primary: #409eff;
+  
+  /* 背景色 */
+  --app-bg-color: #141414;
+  --app-container-bg-color: #1f1f1f;
+  
+  /* 文本颜色 */
+  --app-text-color: #ffffff;
+  --app-text-color-secondary: #909399;
+  
+  /* 边框颜色 */
+  --app-border-color: #4c4d4f;
+  --app-border-color-light: #363637;
+  
+  /* 菜单相关 */
+  --app-menu-bg-color: #141414;
+  --app-menu-text-color: #a6a6a6;
+  --app-menu-active-text-color: #409eff;
+} 
